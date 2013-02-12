@@ -1,0 +1,20 @@
+#!/bin/bash
+
+cd src
+./Allwclean
+cd ..
+
+cd applications
+wclean all
+cd ..
+
+cd tutorials/terrainBlockMesher
+./CleanSTLLinks
+./CleanMeshes
+cd ../..
+
+
+
+
+
+

@@ -1,0 +1,9 @@
+TerrainManager.C
+terrainBlockMesher.C
+TBMcheck.C
+
+modules/cylinder/TerrainManagerModuleCylinder.C
+modules/orographyModifications/TerrainManagerModuleOrographyModifications.C
+modules/blockGrading/TerrainManagerModuleBlockGrading.C
+
+EXE = $(FOAM_USER_APPBIN)/terrainBlockMesher

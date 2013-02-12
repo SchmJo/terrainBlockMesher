@@ -1,0 +1,36 @@
+Installation notes for IWESOL - IWES Open Library
+Copyright Fraunhofer IWES, Oldenburg, Germany
+Date: 11 Feb 2013, author: Jonas Schmidt
+---------------------------------------------------
+
+This version was written for and tested on Ubuntu 12.04
+with OpenFOAM 2.1.1 and g++ 4.6.3. Compatibility with other 
+OS or other versions of Ubuntu, OpenFOAM or compilers are 
+not to be expected.
+
+Installation:
+
+(1) Update the paths in the file 'bashrc' in the folder 'iwesol'.
+
+(2) Add the line 'source <path to iwesol>/bashrc' to your 
+    ~/.bashrc, and either open a new terminal or 'source ~/.bashrc'.
+
+(3) Change directory to 'iwesol' and type './Allmake'. This should
+    compile the libraries and the applications.
+
+(4) Compile the doxygen documentation by typing 
+    'doxygen doc/iwesol.cfg' inside the folder 'iwesol'. The index
+    file is then created at localtion '$IWESOL_DOC/html/index.html'.
+
+The libraries created from 'iwesolCppLibs' are placed at 
+$IWESOL_CPP_LIB. The libraries created form 'iwesolFoamTools' are 
+placed at $FOAM_USER_LIBBIN. The applications are placed at 
+$FOAM_USER_APPBIN. 
+
+You can find basic examples in the folder 
+'iwesol/iwesolFoamTools/tutorials'.
+
+Thank you for using IWESOL. Please consider this a beta version and
+send comments, bugs, complaints to jonas.schmidt@iwes.fraunhofer.de .
+
+

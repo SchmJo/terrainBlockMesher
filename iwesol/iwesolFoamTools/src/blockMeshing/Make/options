@@ -1,0 +1,15 @@
+c++WARN = -ansi -Wall -Wextra -Werror -Wno-unused-parameter
+
+EXE_INC = \
+	-I$(LIB_SRC)/finiteVolume/lnInclude \
+	-I$(LIB_SRC)/meshTools/lnInclude \
+	-I$(IWESOL_BLIB)/src \
+	-I$(IWESOL_FOAM_TOOLS)/src/basics/lnInclude 
+
+LIB_LIBS = \
+	-lfiniteVolume \
+	-lmeshTools \
+	-L$(IWESOL_CPP_LIB) -lblib \
+	-L$(FOAM_USER_LIBBIN) \
+	-liwesolBasics 
+	

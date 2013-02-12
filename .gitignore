@@ -1,62 +1,5 @@
 ####################################
 #
-# c++ standard part:
-#
-####################################
-
-# Compiled Object files
-*.slo
-*.lo
-*.o
-
-# Compiled Dynamic libraries
-*.so
-*.dylib
-
-# Compiled Static libraries
-*.lai
-*.la
-*.a
-
-####################################
-#
-# hand-written part:
-#
-####################################
-*~
-*.svn
-*.vtk
-*.o 
-*.so
-*.tgz
-*.dep
-*.OpenFOAM
-*.blockMesh
-*.stl*
-*.gz
-faces
-points
-owner
-neighbor
-case.foam
-temp*
-*html
-0.*
-1*
-2*
-3*
-4*
-5*
-6*
-7*
-8*
-9*
-log*
-*lnInclude
-*linux64GccDPOpt
-
-####################################
-#
 # OpenFOAM .gitignore - coy:
 #
 ####################################
@@ -146,4 +89,63 @@ doc/Doxygen/DTAGS
 # ignore eclipse project files in the main directory
 /.cproject
 /.project
+
+# end-of-file
+
+
+####################################
+#
+# hand-written part:
+#
+####################################
+*~
+*.svn
+*.vtk
+*.o 
+*.so
+*.tgz
+*.dep
+*.OpenFOAM
+*.blockMesh
+*.stl*
+*.gz
+*.dep
+*faces
+*points
+*owner
+*neighbor
+*boundary
+case.foam
+temp*
+*html
+0.*
+1*
+2*
+3*
+4*
+5*
+6*
+7*
+8*
+9*
+log*
+*lnInclude
+*linux64GccDPOpt
+compiler
+bin
+debug
+release
+results
+makeOPTIONS.sh
+lib/clib/Carlos/BorderExtrator/release
+lib/clib/Carlos/Extender/CMakeCache.txt
+lib/clib/Carlos/Extender/CMakeFiles/*
+lib/clib/Carlos/Extender/extender
+lib/clib/Carlos/Merger/merger
+lib/clib/ClassTest/a.out
+lib/clib/MeshClipper/debug
+lib/clib/hilles/release
+lib/jlib/test/cobweb/cobwebber
+testCases/flap/test_basics/0/volWind
+makeOPTIONS.sh
 

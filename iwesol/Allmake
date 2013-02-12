@@ -1,0 +1,11 @@
+#!/bin/bash
+
+cd iwesolCppLibs
+./Allmake
+cd ..
+
+cd iwesolFoamTools
+./Allmake
+cd ..
+
+

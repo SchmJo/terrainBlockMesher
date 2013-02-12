@@ -1,0 +1,264 @@
+/*---------------------------------------------------------------------------*\
+                               |
+  _____        _______ ____    | IWESOL: IWES Open Library
+ |_ _\ \      / / ____/ ___|   |
+  | | \ \ /\ / /|  _| \___ \   | Copyright: Fraunhofer Institute for Wind
+  | |  \ V  V / | |___ ___) |  | Energy and Energy System Technology IWES
+ |___|  \_/\_/  |_____|____/   |
+                               | http://www.iwes.fraunhofer.de
+                               |
+-------------------------------------------------------------------------------
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     |
+    \\  /    A nd           | Copyright  held by original author
+     \\/     M anipulation  |
+-------------------------------------------------------------------------------
+License
+    This file is part of IWESOL.
+
+    IWESOL is free software: you can redistribute it and/or modify it
+    under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    IWESOL is distributed in the hope that it will be useful, but WITHOUT
+    ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+    FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
+    for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with OpenFOAM.  If not, see <http://www.gnu.org/licenses/>.
+
+\*---------------------------------------------------------------------------*/
+
+#include <fstream>
+using namespace std;
+
+#include "String.h"
+
+namespace blib{
+
+String::String(const vector<String> & vS){
+
+	vector<string> vs(vS.size());
+	for(unsigned int i = 0; i < vS.size();i++){
+		vs[i] = vS[i].s();
+	}
+	*this = String(vs);
+
+}
+
+void String::filterComments(const string & marker) {
+
+	if (!marker.empty()) {
+
+		if (this->substr(0, marker.length()).compare(marker) == 0) {
+			*this = "";
+		} else {
+
+			size_t pos = this->find(marker);
+
+			if (pos != string::npos) {
+
+				*this = substr(0, (int) pos);
+
+			}
+
+		}
+	}
+
+}
+
+void String::eraseSeperators(const string & seperators) {
+
+	string out = s();
+	size_t pos;
+
+	if (empty() || seperators.empty())
+		return;
+
+	vector<string> sep = String(seperators).vs();
+
+	for (unsigned int i = 0; i < sep.size(); i++) {
+
+		pos = 0;
+		while (true) {
+			pos = out.find(sep[i]);
+			if (pos == string::npos)
+				break;
+			out = out.substr(0, pos) + " " + out.substr(pos + 1);
+		}
+
+	}
+
+	*this = out;
+
+}
+
+void String::erasePrePostBlanks(){
+
+	string line = s();
+
+	// trivial case:
+	if(line.empty()) return;
+
+	// preceding blanks:
+	while(!line.empty() && (
+			line.at(0) == ' ' ||
+			line.at(0) == '\t' ||
+			line.at(0) == '\n')
+			)
+		line = line.substr(1);
+
+	// subsequent blanks"
+	while(!line.empty() && (
+			line.at(line.length() -1) == ' ' ||
+			line.at(line.length() -1) == '\t' ||
+			line.at(line.length() -1) == '\n'
+			))
+		line = line.substr(0,line.length() -1);
+
+	*this = line;
+}
+
+void String::upcase() {
+	String & rep = *this;
+	const char * down = rep.c_str();
+	int length = rep.length();
+	char up[600] = "";
+	for (int i = 0; i < length; i++) {
+		if (islower(down[i]))
+			up[i] = toupper(down[i]);
+		else
+			up[i] = down[i];
+	};
+	rep.assign(up);
+}
+
+int String::countWords() const{
+
+	// prepare:
+	String t = *this;
+
+	// clear pre and post blanks:
+	t.erasePrePostBlanks();
+
+	// simple checks:
+	if(t.empty()) return 0;
+
+	// find next seperator:
+	string::size_type pos   = t.find(' ');
+	string::size_type pos_t = t.find('\t');
+	string::size_type pos_n = t.find('\n');
+	if(pos_t < pos) pos = pos_t;
+	if(pos_n < pos) pos = pos_n;
+
+	// no seperator found:
+	if(pos == string::npos) return 1;
+
+	// check the rest, return:
+	return 1 + String(t.erase(0,pos + 1)).countWords();
+
+}
+
+vector<string> String::vs(int maxwords) const{
+	string sentence = s();
+	vector<string> words;
+
+	if (!sentence.empty()) {
+
+		string line(sentence);
+		string::size_type pos;
+		string::size_type pos_t;
+
+		if (line.at(line.size() - 1) != ' ')
+			line += " ";
+
+		while (!line.empty() && line.at(0) == ' ') {
+			line = line.substr(1);
+		}
+		if (line.empty())
+			return words;
+
+		while (true) {
+			pos = line.find(' ');
+			pos_t = line.find('\t');
+			if (pos_t < pos)
+				pos = pos_t;
+			if (pos != string::npos) {
+				string ns = line.substr(0, pos);
+				if (ns.length() > 0)
+					words.push_back(ns);
+				if (maxwords > 0 && (int) words.size() == maxwords)
+					break;
+				line.erase(0, pos + 1);//notice that this will modify your starting string
+			} else {
+				//words.push_back(sentence);
+				break;
+			}
+		}
+	}
+
+	return words;
+}
+
+vector<double> String::vd(int maxout) const{
+
+	vector<string> words = vs();
+
+	vector<double> out;
+
+	for (unsigned int i = 0; i < words.size(); i++) {
+
+		double x;
+
+		ios_base& (*f)(ios_base&) = dec;
+		istringstream iss(words[i]);
+		if ((iss >> f >> x).fail())
+			continue;
+
+		out.push_back(x);
+		if (maxout > 0 && (int) out.size() == maxout)
+			break;
+
+	}
+
+	return out;
+
+}
+
+vector<int> String::vi(int maxout) const{
+
+	vector<string> words = vs();
+
+	vector<int> out;
+
+	for (unsigned int i = 0; i < words.size(); i++) {
+
+		int x;
+
+		ios_base& (*f)(ios_base&) = dec;
+		istringstream iss(words[i]);
+		if ((iss >> f >> x).fail())
+			continue;
+
+		out.push_back(x);
+		if (maxout > 0 && (int) out.size() == maxout)
+			break;
+
+	}
+
+	return out;
+
+}
+
+vector<String> String::vS(int maxwords) const{
+	vector<string> vs(maxwords);
+	vector<String> vS(vs.size());
+	for(unsigned int i = 0;i<vs.size();i++)
+		vS[i] = String(vs[i]);
+	return vS;
+}
+
+} /* blib */

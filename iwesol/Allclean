@@ -1,0 +1,10 @@
+#!/bin/bash
+
+cd iwesolCppLibs
+./Allclean
+cd ..
+
+cd iwesolFoamTools
+./Allclean
+cd ..
+

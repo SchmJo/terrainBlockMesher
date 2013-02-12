@@ -1,0 +1,9 @@
+#!/bin/bash
+
+ln -s -f `pwd`/stl/terrain.stl basicUsage/constant/triSurface/terrain.stl
+ln -s -f `pwd`/stl/terrain.stl cyclic/constant/triSurface/terrain.stl
+ln -s -f `pwd`/stl/terrain.stl cylinder/constant/triSurface/terrain.stl
+ln -s -f `pwd`/stl/terrain.stl outerBox/constant/triSurface/terrain.stl
+ln -s -f `pwd`/stl/terrain.stl blockGrading/constant/triSurface/terrain.stl
+ln -s -f `pwd`/stl/terrain.stl addHills/constant/triSurface/terrain.stl
+

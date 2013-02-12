@@ -1,0 +1,12 @@
+#!/bin/bash
+
+cd basics
+rmdepall
+wclean
+cd ..
+
+cd blockMeshing
+rmdepall
+wclean
+cd ..
+

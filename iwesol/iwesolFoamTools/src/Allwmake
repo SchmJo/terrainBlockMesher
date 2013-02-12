@@ -1,0 +1,10 @@
+#!/bin/bash
+
+cd basics
+wmake libso
+cd ..
+
+cd blockMeshing
+wmake libso
+cd ..
+
