@@ -23,7 +23,7 @@ Installation:
     file is then created at localtion '$IWESOL_DOC/html/index.html'.
 
 The libraries created from 'iwesolCppLibs' are placed at 
-$IWESOL_CPP_LIB. The libraries created form 'iwesolFoamTools' are 
+$IWESOL_CPP_LIB. The libraries created from 'iwesolFoamTools' are 
 placed at $FOAM_USER_LIBBIN. The applications are placed at 
 $FOAM_USER_APPBIN. 
 
