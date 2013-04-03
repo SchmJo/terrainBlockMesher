@@ -163,7 +163,7 @@ ObjectLinePath<T>::ObjectLinePath(
 	// case no resolution:
 	if(!dict.found("storePoints")){
 		forAll(l,I){
-			addPoint(l[I]);
+			blib::GenericLinePath< T >::addPoint(l[I]);
 		}
 	}
 
@@ -172,10 +172,10 @@ ObjectLinePath<T>::ObjectLinePath(
 		scalar storep  = readScalar(dict.lookup("storePoints"));
 		scalar totdist = 0;
 		for(label i = 0; i < l.size() - 1; i++){
-			totdist += getDist(l[i],l[i + 1]);
+			totdist += blib::GenericLinePath< T >::getDist(l[i],l[i + 1]);
 		}
 		for(label i = 0; i < l.size() - 1; i++){
-			label inners = storep * ( getDist(l[i],l[i + 1]) / totdist ) - 2;
+			label inners = storep * ( blib::GenericLinePath< T >::getDist(l[i],l[i + 1]) / totdist ) - 2;
 			List<T> l2 = getLinearList<T>(
 					l[i],
 					l[i + 1],
@@ -184,10 +184,10 @@ ObjectLinePath<T>::ObjectLinePath(
 					false
 					);
 			forAll(l2,lI){
-				addPoint(l2[lI]);
+				blib::GenericLinePath< T >::addPoint(l2[lI]);
 			}
 		}
-		addPoint(l.last());
+		blib::GenericLinePath< T >::addPoint(l.last());
 	}
 
 	if(dict.found("displayPoints")){
