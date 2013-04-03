@@ -65,7 +65,7 @@ public:
 	virtual ~HashTable(){}
 
 	/// set an element
-	inline void set(const T & data, const U & label) { memorize(data,label); }
+	inline void set(const T & data, const U & label) { Memorizing<T,U>::memorize(data,label); }
 
 	/// clears the table
 	void clear() { Memorizing<T,U>::clearMemory(); }
