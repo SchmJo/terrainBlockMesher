@@ -34,7 +34,7 @@ License
 
 #include "String.h"
 #include "OManager.h"
-
+#include "GenericRFunction.h"
 #include "PointLinePath.H"
 
 namespace Foam{

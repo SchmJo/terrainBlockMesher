@@ -1,5 +1,5 @@
-export IWESOL_CPP_LIB=/Users/jon/OpenFOAM/gitCFD/github/terrainBlockMesher/iwesol/iwesolCppLibs/lib
-export IWESOL_BLIB=/Users/jon/OpenFOAM/gitCFD/github/terrainBlockMesher/iwesol/iwesolCppLibs/blib
-export IWESOL_FOAM_TOOLS=/Users/jon/OpenFOAM/gitCFD/github/terrainBlockMesher/iwesol/iwesolFoamTools
-export IWESOL_DOC=/Users/jon/OpenFOAM/gitCFD/github/terrainBlockMesher/iwesol/doc
+export IWESOL_CPP_LIB=/home/jonas/temp/terrainBlockMesher/iwesol/iwesolCppLibs/lib
+export IWESOL_BLIB=/home/jonas/temp/terrainBlockMesher/iwesol/iwesolCppLibs/blib
+export IWESOL_FOAM_TOOLS=/home/jonas/temp/terrainBlockMesher/iwesol/iwesolFoamTools
+export IWESOL_DOC=/home/jonas/temp/terrainBlockMesher/iwesol/doc
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$IWESOL_CPP_LIB
