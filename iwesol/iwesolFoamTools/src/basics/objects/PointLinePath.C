@@ -71,11 +71,14 @@ PointLinePath::PointLinePath(
 	}
 }
 
+// removed, thanks to Philippe Gomme, fails for centos machines
+/*
 PointLinePath::PointLinePath(
 		const GenericRFunction<point> & f
 		):
 		ObjectLinePath<point>(f){
 }
+*/
 
 PointLinePath::PointLinePath(
 		const dictionary & dict,

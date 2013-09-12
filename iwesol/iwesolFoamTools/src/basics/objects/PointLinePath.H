@@ -91,10 +91,13 @@ public:
 			const std::string & name = "PointLinePath"
 			);
 
-	/// Constructor
+	// Constructor
+	// removed, thanks to Philippe Gomme, fails for centos machines
+	/*
 	PointLinePath(
 			const blib::GenericRFunction<point> & f
 			);
+	 */
 
 	/// Constructor
 	PointLinePath(
