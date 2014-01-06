@@ -1,9 +1,0 @@
-globals/Globals.C
-globals/CoordinateSystem.C
-globals/HasCoordinateSystem.C
-globals/STLProjecting.C
-
-objects/Chain.C
-objects/PointLinePath.C
-
-LIB = $(FOAM_USER_LIBBIN)/libiwesolBasics

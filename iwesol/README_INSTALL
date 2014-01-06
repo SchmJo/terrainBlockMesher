@@ -1,36 +1,35 @@
 Installation notes for IWESOL - IWES Open Library
 Copyright Fraunhofer IWES, Oldenburg, Germany
-Date: 11 Feb 2013, author: Jonas Schmidt
+Date: 06 Jan 2014, author: Jonas Schmidt
 ---------------------------------------------------
 
 This version was written for and tested on Ubuntu 12.04
-with OpenFOAM 2.1.1 and g++ 4.6.3. Compatibility with other 
-OS or other versions of Ubuntu, OpenFOAM or compilers are 
+with OpenFOAM 2.1.1 and g++ 4.6.3. Compatibility with other
+OS or other versions of Ubuntu, OpenFOAM or compilers are
 not to be expected.
 
 Installation:
 
-(1) Update the paths in the file 'bashrc' in the folder 'iwesol'.
+(1) Add the following lines to your ~/.bashrc file:
 
-(2) Add the line 'source <path to iwesol>/bashrc' to your 
-    ~/.bashrc, and either open a new terminal or 'source ~/.bashrc'.
+      export IWESOL=<path to the folder iwesol>
+      source $IWESOL/etc/bashrc-2.1.1
 
-(3) Change directory to 'iwesol' and type './Allmake'. This should
+    and either open a new terminal or 'source ~/.bashrc'.
+
+(3) Change directory to 'iwesol' and type 'make'. This should
     compile the libraries and the applications.
 
-(4) Compile the doxygen documentation by typing 
-    'doxygen doc/iwesol.cfg' inside the folder 'iwesol'. The index
-    file is then created at localtion '$IWESOL_DOC/html/index.html'.
+(4) Compile the doxygen documentation by typing
+    'make doxygen' inside the folder 'iwesol'. The index
+    file is then created at location '$IWESOL/doc/iwesol.html'.
 
-The libraries created from 'iwesolCppLibs' are placed at 
-$IWESOL_CPP_LIB. The libraries created from 'iwesolFoamTools' are 
-placed at $FOAM_USER_LIBBIN. The applications are placed at 
-$FOAM_USER_APPBIN. 
+The non-OpenFOAM libraries are located at $OLDEV_CPP_LIB. 
+The OpenFOAM libraries created are located at $FOAM_USER_LIBBIN. 
+The applications are located at $FOAM_USER_APPBIN.
 
-You can find basic examples in the folder 
-'iwesol/iwesolFoamTools/tutorials'.
+You can find basic examples in the folder
+'iwesol/OF/OF-2.1.1/tutorials/utilities/mesh/terrainBlockMesher'.
 
 Thank you for using IWESOL. Please consider this a beta version and
 send comments, bugs, complaints to jonas.schmidt@iwes.fraunhofer.de .
-
-

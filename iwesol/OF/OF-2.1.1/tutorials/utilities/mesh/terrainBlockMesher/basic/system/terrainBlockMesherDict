@@ -1,0 +1,92 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  2.0.1                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      terrainBlockMesherDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+
+stl
+{
+    testLandscape.stl
+    {
+        type triSurfaceMesh;
+    }
+};
+
+writeBlockMeshDict	true;
+writePolyMesh		true;
+
+blockManager
+{
+	coordinates
+	{
+
+        	origin          (0 0 0);
+        	baseVectors     (
+                                	( 1  0  0) // terrain direction 1
+                        	        ( 0  1  0) // terrain direction 2
+                	                ( 0  0  1) // terrain normal (height direction)
+        	                );
+
+	}
+
+
+	// Specification of the over all box. Height values will be adjusted to stl.
+	// p_corner is the lower left box corner, the above base vectors span the box.
+	// Dimensions are lengths scales of the box, wrt base vectors given above.
+	p_corner	(4000 4000 100);
+	dimensions	(1000.0 1000.0 500.0);
+
+	// a point well above the stl.
+	p_above		(0 0 3000.0);
+
+	// the numner of blocks in terrain directions 1 and 2, z will be ignored and set to 1
+	blocks		(20 20 1);
+
+	// the number of cells per block in the three directions
+	cells		(3 3 10);
+
+	// the maximal distance searched for projection
+	maxDistProj	10000;
+
+	// the grading 
+	gradingFactors	( 1 1 10 );;
+
+	// the patch names
+	patch_name_west	        west;
+	patch_name_east	        east;
+	patch_name_north	north;
+	patch_name_south	south;
+	patch_name_sky	        top;
+	patch_name_ground	bottom;	
+	
+	// the patch types
+	// (modifyOrography overwrites for makeCyclic-commands)
+	patch_type_west	        patch;
+	patch_type_east	        patch;
+	patch_type_north	patch;
+	patch_type_south	patch;
+	patch_type_sky	        patch;
+	patch_type_ground	wall;
+
+
+	// make upward splines orthogonal
+	orthogonalizeUpwardSplines
+	{
+		//ignoreBoundary;
+		splineNormalDist	5;
+	}
+}
+
+
+// ************************************************************************* //

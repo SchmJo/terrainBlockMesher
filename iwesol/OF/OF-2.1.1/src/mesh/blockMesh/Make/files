@@ -1,0 +1,12 @@
+fundamentals/BlockConventions.C
+fundamentals/Block.C
+fundamentals/BlockEdgeList.C
+fundamentals/BlockMeshPatch.C
+
+creator/BlockMeshCreator.C
+
+manager/BlockMeshManager.C
+
+edges/pointLinePathEdge/PointLinePathEdge.C
+
+LIB = $(FOAM_USER_LIBBIN)/libolBlockMesh

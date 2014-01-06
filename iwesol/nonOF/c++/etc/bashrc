@@ -1,0 +1,8 @@
+export OLDEV_CPP_LIB=$OLDEV/nonOF/c++/lib
+
+export OLDEV_CPP_DATA=$OLDEV/nonOF/c++/src/data
+export OLDEV_CPP_PLOT=$OLDEV/nonOF/c++/src/plot
+export OLDEV_CPP_IO=$OLDEV/nonOF/c++/src/io
+
+export LD_LIBRARY_PATH=$OLDEV_CPP_LIB:$LD_LIBRARY_PATH
+

@@ -1,0 +1,19 @@
+globals/GeometryGlobals.H
+
+twoD/GroundObject.C
+twoD/OptimizerGroundObject.C
+twoD/ConvexPolygon.C
+twoD/KasmiMassonHill.C
+twoD/OvalKMHill.C
+
+threeD/Object3D.C
+threeD/Box.C
+
+obstacle/Obstacle.C
+
+properties/FaceConstructed.C
+
+stl/STLProjecting.C
+stl/STLLandscape.C
+
+LIB = $(FOAM_USER_LIBBIN)/libolGeometry

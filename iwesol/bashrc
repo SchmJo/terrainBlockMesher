@@ -1,6 +1,0 @@
-export IWESOL=/home/jonas/gitCFD/github/terrainBlockMesher/iwesol
-export IWESOL_CPP_LIB=$IWESOL/iwesolCppLibs/lib
-export IWESOL_BLIB=$IWESOL/iwesolCppLibs/blib
-export IWESOL_FOAM_TOOLS=$IWESOL/iwesolFoamTools
-export IWESOL_DOC=$IWESOL/doc
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$IWESOL_CPP_LIB
