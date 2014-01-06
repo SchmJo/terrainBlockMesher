@@ -164,7 +164,7 @@ blockManager
 	orthogonalizeUpwardSplines
 	{
 		ignoreBoundary;
-		splineNormalDist	50;
+		splineNormalDist	10;
 	}
 
 
