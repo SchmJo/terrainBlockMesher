@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UFT-8"/>
-<title> OLDEV programmer's C++ documentation </title>
+<title> IWESOL programmer's C++ documentation </title>
 <!-- links -->
 <link href="../OpenFOAMdocIcon.png" rel="icon" type="image/png" />
 <link href="search/search.css" rel="stylesheet" type="text/css" />
@@ -26,7 +26,7 @@
       <div class="sitename">
         <h1>
           <a href="http://foam.sourceforge.net/doc/Doxygen/html/"
-             title="Source Guide">OLDEV C++ Documentation
+             title="Source Guide">IWESOL C++ Documentation
           </a>
         </h1>
       </div>
