@@ -93,7 +93,7 @@ lolGeometry-2.1.1: lolFunctions-2.1.1
 cleanLolGeometry-2.1.1:
 	@wclean OF/OF-2.1.1/src/geometry
 	
-	# make target:
+# make target:
 lolMeshTools-2.1.1: lolGeometry-2.1.1
 	@wmake libso OF/OF-2.1.1/src/mesh/meshTools
 
