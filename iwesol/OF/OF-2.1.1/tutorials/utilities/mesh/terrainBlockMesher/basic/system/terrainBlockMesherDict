@@ -88,5 +88,9 @@ blockManager
 	}
 }
 
+checkMesh		true;
+checkMeshNoTopology	false;
+checkMeshAllGeometry	true;
+checkMeshAllTopology	true;
 
 // ************************************************************************* //

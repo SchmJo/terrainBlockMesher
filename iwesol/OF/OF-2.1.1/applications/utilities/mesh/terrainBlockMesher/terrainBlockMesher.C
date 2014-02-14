@@ -31,12 +31,12 @@ License
     along with OpenFOAM.  If not, see <http://www.gnu.org/licenses/>.
 
 \*---------------------------------------------------------------------------*/
-
 #include "TerrainManager.H"
 #include "argList.H"
 #include "Time.H"
 #include "fvMesh.H"
 #include "searchableSurfaces.H"
+#include "MeshChecker.H"
 using namespace Foam;
 using namespace oldev;
 
@@ -64,6 +64,7 @@ int main(int argc, char *argv[])
     );
     bool writeDict = readBool(dict.lookup("writeBlockMeshDict"));
     bool writeMesh = readBool(dict.lookup("writePolyMesh"));
+	bool checkMesh = readBool(dict.lookup("checkMesh"));
 
     // Read geometry:
     autoPtr< searchableSurfaces > stlSurfaces;
@@ -123,9 +124,31 @@ int main(int argc, char *argv[])
     //if(bmDict.found("check")) bm().check();
     Info << "TerrainManager finished, after " << runTime.cpuTimeIncrement() << " s.\n"<< endl;
 
+    // check mesh:
+    autoPtr< polyMesh > mesh;
+    if(checkMesh){
+    	bool checkMeshNoTopology  = readBool(dict.lookup("checkMeshNoTopology"));
+    	bool checkMeshAllGeometry = readBool(dict.lookup("checkMeshAllGeometry"));
+    	bool checkMeshAllTopology = readBool(dict.lookup("checkMeshAllTopology"));
+    	mesh = bm().createPolyMesh(writeDict);
+    	if
+    	(
+    			MeshChecker().check
+    			(
+    					mesh(),
+    					checkMeshNoTopology,
+    					checkMeshAllGeometry,
+    					checkMeshAllTopology
+    			)
+    	) {
+        	Info << "\nError: checkMesh failed." << endl;
+          	throw;
+    	}
+    }
+
 	// create mesh:
     if(writeMesh){
-        autoPtr< polyMesh > mesh = bm().createPolyMesh(writeDict);
+        if(!mesh.valid()) mesh = bm().createPolyMesh(writeDict);
         mesh().removeFiles();
         Info << "\nwriting polyMesh" << endl;
         mesh().write();

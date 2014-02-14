@@ -164,13 +164,15 @@ blockManager
 	orthogonalizeUpwardSplines
 	{
 		ignoreBoundary;
-		splineNormalDist	10;
+		splineNormalDist	5;
 	}
 
 
-	// check;
-
 }
 
+checkMesh		true;
+checkMeshNoTopology	false;
+checkMeshAllGeometry	true;
+checkMeshAllTopology	true;
 
 // ************************************************************************* //

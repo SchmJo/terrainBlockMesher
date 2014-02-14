@@ -30,6 +30,30 @@ License
     You should have received a copy of the GNU General Public License
     along with OpenFOAM.  If not, see <http://www.gnu.org/licenses/>.
 
+Class
+
+
+Description
+
+
+SourceFiles
+
+
+Author
+    Jonas Schmidt (jonas.schmidt@iwes.fraunhofer.de)
+
+Modified by
+
+
+Test location
+
+
+Tested by
+
+
+Used by
+
+
 \*---------------------------------------------------------------------------*/
 
 namespace Foam {
@@ -76,12 +100,13 @@ inline void BlockMeshCreator::clearGeom(){
 	}
 }
 
-inline void BlockMeshCreator::addPoint(const point & p) {
+inline label BlockMeshCreator::addPoint(const point & p) {
 	if(points_.size() == pointCounter_){
 		resizePoints(pointCounter_ + 1);
 	}
 	points_[pointCounter_] = p;
 	pointCounter_++;
+	return pointCounter_ - 1;
 }
 
 inline void BlockMeshCreator::addPoints(const pointField & pts) {
@@ -109,6 +134,7 @@ inline void BlockMeshCreator::addPatch(
 					type
 			)
 	);
+	patchIndices_.set(name,patches_.size() - 1);
 }
 
 inline void BlockMeshCreator::contributeToPatch(

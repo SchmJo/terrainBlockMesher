@@ -31,13 +31,28 @@ License
     along with OpenFOAM.  If not, see <http://www.gnu.org/licenses/>.
 
 Class
-    Foam::oldev::BlockMeshCreator
+
 
 Description
 
+
 SourceFiles
-    BlockMeshCreatorI.H
-    BlockMeshCreator.C
+
+
+Author
+    Jonas Schmidt (jonas.schmidt@iwes.fraunhofer.de)
+
+Modified by
+
+
+Test location
+
+
+Tested by
+
+
+Used by
+
 
 \*---------------------------------------------------------------------------*/
 
@@ -86,6 +101,9 @@ class BlockMeshCreator
 
 		/// the patches
 		PtrList< BlockMeshPatch > patches_;
+
+		/// the patch indices
+		HashTable< label > patchIndices_;
 
 		/// point-block memory
 		List< labelHashSet > pointBlockMem_;
@@ -198,6 +216,9 @@ public:
     	/// return patches
     	inline const PtrList< BlockMeshPatch > & patches() const { return patches_; }
 
+    	/// return patch indices
+    	inline const HashTable< label > & patchIndices() const { return patchIndices_; }
+
     	/// returns the total number of blocks
     	inline label size() const { return blocks_.size(); }
 
@@ -251,8 +272,8 @@ public:
         /// Clear geometry (internal points, cells, boundaryPatches)
         inline void clearGeom();
 
-    	/// add a point
-    	inline void addPoint(const point & p);
+    	/// add a point, return index
+    	inline label addPoint(const point & p);
 
     	/// add points
     	inline void addPoints(const pointField & pts);
@@ -267,7 +288,8 @@ public:
     	);
 
     	/// add a block, return index
-    	label addBlock(
+    	label addBlock
+    	(
     			const label & p_SWL,const label & p_SWH,
     			const label & p_NWL,const label & p_NWH,
     			const label & p_SEL,const label & p_SEH,
@@ -277,7 +299,7 @@ public:
     			const label cells_z,
     			const scalarList & gradingFactors = scalarList(3,scalar(1)),
     			const word& zoneName = ""
-    			);
+    	);
 
     	/// add a block by adding a new face, return index
     	label addBlock
@@ -341,17 +363,19 @@ public:
     	) { setAllDummyEdges(false); }
 
     	/// add a patch
-    	inline void addPatch(
+    	inline void addPatch
+    	(
     			const word & name,
     			const word & type
-    			);
+    	);
 
     	/// contribute to existing patch
-    	inline void contributeToPatch(
+    	inline void contributeToPatch
+    	(
     			label patchI,
     			label blockI,
     			label faceID
-    			);
+    	);
 
 
     // Member Operators

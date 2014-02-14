@@ -1,9 +1,14 @@
 TerrainManager.C
+TMCalc.C
 terrainBlockMesher.C
 
-#modules/cylinder/TerrainManagerModuleCylinder.C
 modules/orographyModifications/TerrainManagerModuleOrographyModifications.C
 modules/orographyModifications/TMMOMaddGeometries.C
+
 modules/blockGrading/TerrainManagerModuleBlockGrading.C
+
+modules/cylinder/TerrainManagerModuleCylinder.C
+modules/cylinder/TMMCCalc.C
+modules/cylinder/TMMCSet.C
 
 EXE = $(FOAM_USER_APPBIN)/terrainBlockMesher

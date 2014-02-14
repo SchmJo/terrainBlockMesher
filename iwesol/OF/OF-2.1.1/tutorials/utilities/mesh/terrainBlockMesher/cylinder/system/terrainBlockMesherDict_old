@@ -17,90 +17,75 @@ FoamFile
 
 stl
 {
-    testLandscape.stl
+ //   Deponie_landscape2.stl
+ //   rectangle_deponie.stl
+    LandscapeKasselNoHoles2.stl
     {
         type triSurfaceMesh;
+
+        //tolerance   1E-5;   // optional:non-default tolerance on intersections
+        //maxTreeDepth 10;    // optional:depth of octree. Decrease only in case
+                              // of memory limitations.
     }
 };
 
 
-writeBlockMeshDict	true;
-writePolyMesh		true;
+
+coordinates
+{
+
+	origin		(0 0 0);
+	
+	baseVectors	(
+				/*( 0.8660  0.5  0) // terrain base 1
+				( -0.5  0.8660  0) // terrain base 2*/
+				( 1  0  0) // terrain direction 1
+				(0  1  0) // terrain direction 2			
+				( 0  0  1) // terrain normal (height direction)
+			);
+
+}
+
 
 blockManager
 {
-	coordinates
-	{
-	
-        	origin          (0 0 0);
-
-        	baseVectors     
-		(
-                                ( 1  0  0) // terrain direction 1
-                                ( 0  1  0) // terrain direction 2
-                                ( 0  0  1) // terrain normal (height direction)
-                );
-	}
 
 	// Specification of the over all box. Height values will be adjusted to stl.
 	// p_corner is the lower left box corner, the above base vectors span the box.
 	// Dimensions are lengths scales of the box, wrt base vectors given above.
-	p_corner	(2000 2000 100);
-	dimensions	(5000.0 5000.0 500.0);
-
+	p_corner	(2000 2000 280);
+	dimensions	(1500.0 1000.0 2000.0);
+	
 	// Parameters for outside-STL-interpolation, if needed.
+	// The interpolation to the zero level is so far done by the function
+	//         f(s) = (1 - s) * exp(-A * pow(s,B)
 	// 
 	stlInsideBox
 	{
-		p_corner_inside_stl   	(4000 4000 300);
-		dimensions_inside_stl 	(1000.0 1000.0 100.0);
-		zeroLevel		200.0;
-
-		blendingFunction
-		{
-
-			type	distance;
-
-			dMin	50;
-			dMax	800;
-/*
-			writePDF
-			{
-				resultsFolder	"results";
-				baseName	terrain;
-				probePoint0	(2500 2400 300);
-				probePoint1	(0 0 300);
-				interpolOrder	4;
-				steps		100;
-				plotPoints	150;
-			}
-*/	
-			transitionFunction
-			{
-				type			smooth;
-			}
-	
-			distanceTransitionFunction
-			{
-				type			linear;
-			}
-		}
+		//p_corner_inside_stl   	(50 50 0);
+		p_corner_inside_stl   	(2000 2000 280);
+		//dimensions_inside_stl 	(9180.0 8220.0 1000.0);
+		dimensions_inside_stl 	(1500.0 1000.0 2000.0);
+		zeroLevel		0.0;
+		f_constant_A		0.5;
+		f_constant_B		1.0;	
 	}
 
 	// a point well above the stl.
 	p_above		(0 0 3000.0);
 
 	// the numner of blocks in terrain directions 1 and 2, z will be ignored and set to 1
-	blocks		(30 30 1);
+	blocks		(8 12 1);
 
 	// the number of cells per block in the three directions
-	cells		(3 3 5);
+	cells		(5 4 5);
 
 	// the maximal distance searched for projection
 	maxDistProj	10000;
 
 	// the grading command
-	gradingFactors	(1 1 10);
+	grading		simpleGrading;
+	gradingFactors	(1 1 1);
 
 	// the patch names
 	patch_name_west	        west;
@@ -119,18 +104,21 @@ blockManager
 	patch_type_sky	        patch;
 	patch_type_ground	wall;
 
-
-	// make upward splines orthogonal
-	orthogonalizeUpwardSplines
+	// create an outer cylinder
+	outerCylinder
 	{
-		ignoreBoundary;
-		splineNormalDist 5;
+	  centrePoint                   (2500 2500 280);
+	  radius                        3000;
+	  radialGrading                 10;
+	  radialBlockCells              30;
+	  interpolationLinearFraction   0.7;
+	  firstSectionStartDirection    (-1 1 0);
+	  numberOfSections              8;
 	}
+
+	// check;
+
 }
 
-checkMesh		true;
-checkMeshNoTopology	false;
-checkMeshAllGeometry	true;
-checkMeshAllTopology	true;
 
 // ************************************************************************* //

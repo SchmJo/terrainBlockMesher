@@ -1,0 +1,6 @@
+meshChecker/checkGeometry.C
+meshChecker/checkTopology.C
+meshChecker/printMeshStats.C
+meshChecker/MeshChecker.C
+
+LIB = $(FOAM_USER_LIBBIN)/libolMeshTools

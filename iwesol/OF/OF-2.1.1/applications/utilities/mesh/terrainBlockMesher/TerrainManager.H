@@ -31,14 +31,29 @@ License
     along with OpenFOAM.  If not, see <http://www.gnu.org/licenses/>.
 
 Class
-    Foam::TerrainManager
+	Foam::oldev::TerrainManager
 
 Description
+	A BlockMeshManager that creates a mesh above a terrain STL surface.
 
 SourceFiles
-    TerrainManagerI.H
-    TerrainManager.C
-    TerrainManagerIO.C
+	TerrainManager.C
+	TMCalc.C
+
+Author
+    Jonas Schmidt (jonas.schmidt@iwes.fraunhofer.de)
+
+Modified by
+
+
+Test location
+	$OLDEV_OF_TUT/utilities/mesh/terrainBlockMesher/basic
+
+Tested by
+	Jonas Schmidt
+
+Used by
+
 
 \*---------------------------------------------------------------------------*/
 
@@ -49,7 +64,9 @@ SourceFiles
 #include "STLLandscape.H"
 #include "CoordinateSystem.H"
 #include "modules/blockGrading/TerrainManagerModuleBlockGrading.H"
+#include "modules/cylinder/TerrainManagerModuleCylinder.H"
 #include "modules/orographyModifications/TerrainManagerModuleOrographyModifications.H"
+
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
@@ -119,12 +136,12 @@ class TerrainManager
     	/// the grading factors
     	scalarList gradingFactors_;
 
-    /*
+
     	/// the cylinder module
-    	TerrainManagerModuleCylinder cylinderModule;
-*/
+    	TerrainManagerModuleCylinder cylinderModule_;
+
     	/// the modify orography module
-    	TerrainManagerModuleOrographyModifications modificationModule;
+    	TerrainManagerModuleOrographyModifications modificationModule_;
 
     	/// the block grading module
     	TerrainManagerModuleBlockGrading gradingModule_;
@@ -213,6 +230,17 @@ public:
     	/// returns coordinate system
     	const CoordinateSystem & coordinateSystem() const { return domainBox_.coordinateSystem(); }
 
+    	/// walk around box labels, starting at SWL (or SWH), going east. returns (i,j,v).
+    	labelList walkBox
+    	(
+    			label n,
+    			const word & HL,
+    			bool counterClockWise = true
+    	) const;
+
+    	/// returns box walk maximum number
+    	inline label walkBoxMaximum() const;
+
 
         // Edit
 
@@ -229,6 +257,7 @@ public:
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
+#include "TerrainManagerI.H"
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 

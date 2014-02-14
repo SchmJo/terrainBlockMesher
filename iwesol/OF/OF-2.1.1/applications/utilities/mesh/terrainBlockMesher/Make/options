@@ -11,6 +11,7 @@ EXE_INC = \
     -I$(OLDEV_OF_SRC)/basics/lnInclude \
     -I$(OLDEV_OF_SRC)/functions/lnInclude \
     -I$(OLDEV_OF_SRC)/mesh/blockMesh/lnInclude \
+    -I$(OLDEV_OF_SRC)/mesh/meshTools/lnInclude \
     -I$(OLDEV_OF_SRC)/geometry/lnInclude
 
 EXE_LIBS = \
@@ -25,5 +26,6 @@ EXE_LIBS = \
     -lolBasics \
     -lolFunctions \
     -lolBlockMesh \
+    -lolMeshTools \
     -lolGeometry
     

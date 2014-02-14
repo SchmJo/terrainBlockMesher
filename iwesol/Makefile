@@ -6,6 +6,7 @@ all: \
 	lolBasics-2.1.1 \
 	lolFunctions-2.1.1 \
 	lolBlockMesh-2.1.1 \
+	lolMeshTools-2.1.1 \
 	lolGeometry-2.1.1 \
 	terrainBlockMesher-2.1.1 
 
@@ -91,6 +92,15 @@ lolGeometry-2.1.1: lolFunctions-2.1.1
 # clean target:
 cleanLolGeometry-2.1.1:
 	@wclean OF/OF-2.1.1/src/geometry
+	
+	# make target:
+lolMeshTools-2.1.1: lolGeometry-2.1.1
+	@wmake libso OF/OF-2.1.1/src/mesh/meshTools
+
+# clean target:
+cleanLolMeshTools-2.1.1:
+	@wclean OF/OF-2.1.1/src/mesh/meshTools
+	
 
 
 #############################################
@@ -100,7 +110,7 @@ cleanLolGeometry-2.1.1:
 #############################################
 
 # make target:
-terrainBlockMesher-2.1.1: lolBlockMesh-2.1.1 lolGeometry-2.1.1 
+terrainBlockMesher-2.1.1: lolBlockMesh-2.1.1 lolMeshTools-2.1.1 
 	@wmake OF/OF-2.1.1/applications/utilities/mesh/terrainBlockMesher
 
 # clean target:
@@ -121,5 +131,6 @@ clean: \
 	cleanLolBasics-2.1.1 \
 	cleanLolFunctions-2.1.1 \
 	cleanLolBlockMesh-2.1.1 \
+	cleanLolMeshTools-2.1.1 \
 	cleanLolGeometry-2.1.1 \
 	cleanTerrainBlockMesher-2.1.1 
