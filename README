@@ -1,6 +1,6 @@
 README for IWESOL - IWES Open Library
 Copyright Fraunhofer IWES, Oldenburg, Germany
-Date: 06 Jan 2014, author: Jonas Schmidt
+Date: 15 Feb 2014, author: Jonas Schmidt
 ---------------------------------------------------
 
 IWESOL contains libraries and tools for C++ and OpenFOAM.
@@ -17,7 +17,7 @@ In the version available here it contains:
 
       - the creation of an outer box around the STL,
 
-      MISSING: - the creation of a cylinder around the STL, with
+      - the creation of a cylinder around the STL, with
         an arbitrary number of sector patches,
 
       - the possibility to add symmetric and oval hills
