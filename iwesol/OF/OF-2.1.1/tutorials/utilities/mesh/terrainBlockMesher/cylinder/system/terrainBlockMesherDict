@@ -89,25 +89,19 @@ blockManager
           firstSectionStartDirection    (-1 1 0);
           numberOfSections              8;
 
-	  blendingFunction
-	  {
-                        type    distance;
+	  	  blendingFunction
+	  	  	{
+            	type    distance;
 
-                        dMin    0;
-                        dMax    1000;
+            	dMin    0;
+            	dMax    1000;
                         
-			transitionFunction
-                        {
-                                type                    smooth;
-                        }
-        
-                        distanceTransitionFunction
-                        {
-                                type                    linear;
-                        }
-          }
-	  
-        }
+				transitionFunction
+            	{
+            		type	smooth;
+            	}
+            }
+      }
 }
 
 checkMesh		true;

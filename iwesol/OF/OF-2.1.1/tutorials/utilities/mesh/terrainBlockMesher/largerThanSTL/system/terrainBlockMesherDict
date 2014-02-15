@@ -54,7 +54,7 @@ blockManager
 	{
 		p_corner_inside_stl   	(4000 4000 300);
 		dimensions_inside_stl 	(1000.0 1000.0 100.0);
-		zeroLevel		200.0;
+		zeroLevel				200.0;
 
 		blendingFunction
 		{
@@ -63,26 +63,10 @@ blockManager
 
 			dMin	50;
 			dMax	800;
-/*
-			writePDF
-			{
-				resultsFolder	"results";
-				baseName	terrain;
-				probePoint0	(2500 2400 300);
-				probePoint1	(0 0 300);
-				interpolOrder	4;
-				steps		100;
-				plotPoints	150;
-			}
-*/	
+
 			transitionFunction
 			{
-				type			smooth;
-			}
-	
-			distanceTransitionFunction
-			{
-				type			linear;
+				type	smooth;
 			}
 		}
 	}

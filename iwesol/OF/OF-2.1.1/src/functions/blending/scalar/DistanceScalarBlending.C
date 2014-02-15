@@ -34,6 +34,7 @@ License
 
 #include "DistanceScalarBlending.H"
 #include "addToRunTimeSelectionTable.H"
+#include "LinearTransition.H"
 
 namespace Foam
 {
@@ -54,14 +55,20 @@ DistanceScalarBlending::DistanceScalarBlending(
 					dict
 			),
 			dMin_(readScalar(dict.lookup("dMin"))),
-			dMax_(readScalar(dict.lookup("dMax"))),
-			dTransition_
-			(
-					TransitionFunction::New
-					(
-							dict.subDict("distanceTransitionFunction")
-					)
-			){
+			dMax_(readScalar(dict.lookup("dMax"))){
+
+	if(dict.found("distanceTransitionFunction")){
+		dTransition_ = TransitionFunction::New
+						(
+								dict.subDict("distanceTransitionFunction")
+						);
+	} else {
+		Info << "DistanceScalarBlending: keyword 'distanceTransitionFunction' not found in dictionary, choosing linear." << endl;
+		dTransition_ = autoPtr< TransitionFunction >
+		(
+				new LinearTransition()
+		);
+	}
 }
 
 // * * * * * * * * * * * * * * * * Public member functions  * * * * * * * * * * * * * * //
