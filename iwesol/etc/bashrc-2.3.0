@@ -1,0 +1,7 @@
+# please set the variable IWESOL in your ~/.bashrc
+# to this directory, and then source this file!
+
+export OLDEV=$IWESOL
+source $OLDEV/OF/OF-2.3.0/etc/bashrc
+source $OLDEV/nonOF/c++/etc/bashrc
+
