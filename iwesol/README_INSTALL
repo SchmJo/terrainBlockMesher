@@ -56,6 +56,30 @@ The applications are located at $FOAM_USER_APPBIN.
 You can find basic examples in the folder
 'iwesol/OF/OF-2.3.0/tutorials/utilities/mesh/terrainBlockMesher'.
 
+-----------------------------------------------------------------
+Installation with OpenFOAM 2.3.1:
+
+(1) Add the following lines to your ~/.bashrc file:
+
+      export IWESOL=<path to the folder iwesol>
+      source $IWESOL/etc/bashrc-2.3.1
+
+    and either open a new terminal or 'source ~/.bashrc'.
+
+(3) Change directory to 'iwesol' and type 'make OF2.3.1'.
+    This should compile the libraries and the applications.
+
+(4) Compile the doxygen documentation by typing
+    'make doxygen' inside the folder 'iwesol'. The index
+    file is then created at location '$IWESOL/doc/iwesol.html'.
+
+The non-OpenFOAM libraries are located at $OLDEV_CPP_LIB.
+The OpenFOAM libraries created are located at $FOAM_USER_LIBBIN.
+The applications are located at $FOAM_USER_APPBIN.
+
+You can find basic examples in the folder
+'iwesol/OF/OF-2.3.1/tutorials/utilities/mesh/terrainBlockMesher'.
+
 ---------------------------------------------------------------------
 
 Thank you for using IWESOL. Please consider this a beta version and
