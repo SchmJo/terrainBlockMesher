@@ -1,0 +1,4 @@
+globals/Globals.C
+globals/CoordinateSystem.C
+
+LIB = $(FOAM_USER_LIBBIN)/libolBasics

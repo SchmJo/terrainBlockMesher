@@ -1,0 +1,16 @@
+linePaths/PointLinePath.C
+
+RFunctions/ScalarRFunction.C
+
+transition/TransitionFunction.C
+transition/LinearTransition.C
+transition/ArcTanTransition.C
+transition/PointTransition.C
+transition/SmoothTransition.C
+
+blending/scalar/ScalarBlendingFunction.C
+blending/scalar/LinearScalarBlending.C
+blending/scalar/RadialScalarBlending.C
+blending/scalar/DistanceScalarBlending.C
+
+LIB = $(FOAM_USER_LIBBIN)/libolFunctions
