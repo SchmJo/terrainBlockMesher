@@ -4,9 +4,9 @@ Date: 12 Jan 2015, author: Jonas Schmidt
 ---------------------------------------------------
 
 This version was written for and tested on Ubuntu 12.04
-with OpenFOAM 2.1.1 or 2.3.0 and g++ 4.6.3. Compatibility 
-with other OS or other versions of Ubuntu, OpenFOAM or 
-compilers are not to be expected.
+with OpenFOAM 2.1.1, 2.3.0 or 2.3.1 and g++ 4.6.3. 
+Compatibility with other OS or other versions of Ubuntu, 
+OpenFOAM or compilers are not to be expected.
 
 ---------------------------------------------------------------
 Installation with OpenFOAM 2.1.1:
